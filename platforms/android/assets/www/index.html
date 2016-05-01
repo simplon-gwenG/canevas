@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+        <script src="js/app.js"></script>
+        <script src="js/controllers.js"></script>
+
+  </head>
+  <body ng-app='starter' class="platform-android platform-cordova platform-webview">
+
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Camera2</h1>
+      </ion-header-bar>
+        <ion-content class="has-header padding" ng-controller="ImageController">
+          <button class="button button-block button-calm icon ion-android-camera" ng-click="takePhoto()">   Smile ! </button>
+          <ion-scroll direction="y" id="emailBody" >
+             <canvas id="canvas_id" width="250" height="600" style="border: 5px solid;">
+              <img class="image imgAffichage" ng-repeat="img in images " ng-src="{{img}}"  id="pictures" style="max-width:250px; max-height:auto; margin-top:50p" ng-style="myObj"/>
+             </canvas>
+          </ion-scroll>
+          <button class="button button-small button-positive icon ion-email" ng-click="createCanvas()">   create canvas </button>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
