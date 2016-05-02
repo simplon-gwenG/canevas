@@ -55,37 +55,22 @@ angular.module('starter')
       //dessine l'image  de l'index j
               context.strokeRect(positionX,positionY,250, 150);// positionnment du rectangle autour de l'image
               context.restore();// retour au context d'origine
-      //transforme le canevas en image
-                          var img = new Image();
-                          img.src = canvas.toDataURL("image/png");
-                          document.body.appendChild(img);
-                        console.log(img.src);
-              }
-              var url = img.src;
-   var filePath = '/mnt/sdcard/photomaton.jpg';
-   var path= filePath.substr(filePath.lastIndexOf('/')+1);
-   var fileTransfer = new FileTransfer();
-   var uri = encodeURI(url);
 
-   fileTransfer.download(
-       uri,
-       filePath,
-       path,
-       function(entry) {
-           console.log("download complete: " + entry.fullPath);
-       },
-       function(error) {
-           console.log("download error source " + error.source);
-           console.log("download error target " + error.target);
-           console.log("upload error code" + error.code);
-       },
-       false,
-       {
-           headers: {
-               "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-           }
-       }
-   );
+
+              }
+              //transforme le canevas en image
+              window.canvas2ImagePlugin.saveImageDataToLibrary(
+                function(msg){
+                    console.log(msg);
+                },
+                function(err){
+                    console.log(err);
+                },
+                document.getElementById('canvas_id')
+            );          
+
+
+
         }
     }
 })
