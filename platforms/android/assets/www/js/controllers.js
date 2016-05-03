@@ -1,7 +1,7 @@
 
 angular.module('starter')
 
-.controller('ImageController', function($scope, $cordovaFile, $cordovaCapture, $cordovaEmailComposer){
+.controller('ImageController', function($scope, $cordovaFile, $cordovaCapture, $cordovaEmailComposer,$cordovaSocialSharing){
   // définition du tableau pour le ng-repeat pour stocker les images
   $scope.images = [];
   $scope.myObj = {"border": "10px solid white",}
@@ -67,10 +67,22 @@ angular.module('starter')
                     console.log(err);
                 },
                 document.getElementById('canvas_id')
-            );          
+            );
+            $scope.shareAnywhere = function(){
+                $cordovaSocialSharing.shareViaEmail(
+                    "ceci est le message",
+                    "ceci est le sujet",
+                    null,// destinataire
+                    null,//destinataire en copie
+                    null, // bcc copie invisible
+                    canvas.toDataURL()// files
+
+                );
 
 
 
         }
+    }
+
     }
 })

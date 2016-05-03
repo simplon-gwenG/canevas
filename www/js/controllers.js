@@ -1,7 +1,7 @@
 
 angular.module('starter')
 
-.controller('ImageController', function($scope, $cordovaFile, $cordovaCapture, $cordovaEmailComposer){
+.controller('ImageController', function($scope, $cordovaFile, $cordovaCapture, $cordovaEmailComposer,$cordovaSocialSharing){
   // définition du tableau pour le ng-repeat pour stocker les images
   $scope.images = [];
   $scope.myObj = {"border": "10px solid white",}
@@ -60,17 +60,29 @@ angular.module('starter')
               }
               //transforme le canevas en image
               window.canvas2ImagePlugin.saveImageDataToLibrary(
-                function(msg){
-                    console.log(msg);
+                function(chemin){
+                    console.log(chemin);
                 },
                 function(err){
                     console.log(err);
                 },
                 document.getElementById('canvas_id')
-            );          
+            );// fonction share avec le plugin cordovaSocialSharing prédéfini
+            $scope.shareAnywhere = function(){
+                $cordovaSocialSharing.shareViaEmail(
+                    "ceci est le message",
+                    "ceci est le sujet",
+                    null,// destinataire
+                    null,//destinataire en copie
+                    null, // bcc copie invisible
+                    canvas.toDataURL()// files
+
+                );
 
 
 
         }
+    }
+
     }
 })

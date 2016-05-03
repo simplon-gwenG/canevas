@@ -36,6 +36,9 @@
         },
         "org.devgeeks.Canvas2ImagePlugin": {
             "PACKAGE_NAME": "com.ionicframework.canevas794448"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ionicframework.canevas794448"
         }
     },
     "dependent_plugins": {
